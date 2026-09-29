@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Leaderboard{% endblock %}
+{% block content %}
+<div class="hero">
+<div>
+<span class="eyebrow">Live Results</span>
+<h1>🏆 Leaderboard</h1>
+</div>
+</div>
+
+<section class="card table">
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Team</th>
+<th>Members</th>
+<th>Submitted By</th>
+<th>Time</th>
+<th>Submitted</th>
+</tr>
+</thead>
+<tbody>
+{% for r in results %}
+<tr>
+<td>#{{ loop.index }}</td>
+<td>{{ r.team_name }}</td>
+<td>{{ r.member1 }} &amp; {{ r.member2 }}</td>
+<td>{{ r.member }}</td>
+<td>{{ "%02d:%02d"|format(r.elapsed_seconds // 60, r.elapsed_seconds % 60) }}</td>
+<td>{{ r.submitted_at }}</td>
+</tr>
+{% else %}
+<tr>
+<td colspan="6">No submissions yet.</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</section>
+{% endblock %}

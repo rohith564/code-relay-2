@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Participant{% endblock %}
+{% block content %}
+<div class="hero">
+<div>
+<span class="eyebrow">Participant</span>
+<h1>{{ session.team_name }}</h1>
+<p>{{ session.member1 }} &amp; {{ session.member2 }}</p>
+</div>
+<div class="status">
+Round {{ event.round_no }}
+<strong>{{ event.status|upper }}</strong>
+</div>
+</div>
+
+<div class="grid two">
+<section class="card">
+<h2>Current Phase</h2>
+<div class="big">{{ event.phase|title }}</div>
+</section>
+
+<section class="card">
+<h2>Question</h2>
+{% if question %}
+<h3>{{ question.title }}</h3>
+<p>{{ question.description }}</p>
+{% else %}
+<p>No question has been added for this round.</p>
+{% endif %}
+</section>
+</div>
+
+{% if event.status == 'running' and question %}
+<a class="button primary large" href="{{ url_for('coding') }}">Open Coding Screen</a>
+{% else %}
+<div class="notice">Wait for the admin to start the round.</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="hero">
+<div>
+<span class="eyebrow">Control Center</span>
+<h1>Admin Dashboard</h1>
+<p>Round {{ event.round_no }} · {{ event.phase }} · {{ event.status }}</p>
+</div>
+<a class="button secondary" href="{{ url_for('admin_questions') }}">Questions</a>
+</div>
+
+<div class="grid three">
+<div class="stat">Teams<strong>{{ teams }}</strong></div>
+<div class="stat">Submissions<strong>{{ submissions_count }}</strong></div>
+<div class="stat">Round<strong>{{ event.round_no }}</strong></div>
+</div>
+
+<section class="card">
+<h2>Event Controls</h2>
+<div class="actions">
+
+<form method="post" action="{{ url_for('admin_event') }}">
+<input type="hidden" name="action" value="round1">
+<button class="primary">Start Round 1</button>
+</form>
+
+<form method="post" action="{{ url_for('admin_event') }}">
+<input type="hidden" name="action" value="round2">
+<button class="primary">Start Round 2</button>
+</form>
+
+<form method="post" action="{{ url_for('admin_event') }}">
+<input type="hidden" name="action" value="finish">
+<button class="secondary">Finish Event</button>
+</form>
+
+<form method="post" action="{{ url_for('admin_event') }}"
+      onsubmit="return confirm('Reset all submissions?')">
+<input type="hidden" name="action" value="reset">
+<button class="danger">Reset</button>
+</form>
+
+</div>
+</section>
+
+<section class="card table">
+<h2>Submissions</h2>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Team</th>
+<th>Member</th>
+<th>Time</th>
+<th>Submitted</th>
+</tr>
+</thead>
+<tbody>
+{% for r in rows %}
+<tr>
+<td>#{{ loop.index }}</td>
+<td>{{ r.team_name }}</td>
+<td>{{ r.member }}</td>
+<td>{{ "%02d:%02d"|format(r.elapsed_seconds // 60, r.elapsed_seconds % 60) }}</td>
+<td>{{ r.submitted_at }}</td>
+</tr>
+{% else %}
+<tr>
+<td colspan="5">No submissions.</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</section>
+{% endblock %}

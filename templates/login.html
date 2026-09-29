@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Team Login{% endblock %}
+{% block content %}
+<section class="center card">
+<div class="logo">🏁</div>
+<h1>Code Relay</h1>
+<p>Enter your team code to enter the event.</p>
+<form method="post">
+<label>Team Code</label>
+<input name="login_code" placeholder="TEAM001" required autofocus>
+<button class="primary">Enter Event</button>
+</form>
+</section>
+{% endblock %}

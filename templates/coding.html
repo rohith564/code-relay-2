@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+
+{% block title %}Coding{% endblock %}
+
+{% block content %}
+
+<div class="coding-head">
+
+    <div>
+        <span class="eyebrow">Round {{ event.round_no }}</span>
+
+        <h1>{{ question.title }}</h1>
+
+        <p>{{ question.description }}</p>
+    </div>
+
+    <div class="timer">
+        <small>Remaining</small>
+        <strong id="timer">10:00</strong>
+    </div>
+
+</div>
+
+
+<section class="card">
+
+    <div class="notice">
+        Use VS Code to write and test your solution.
+        Paste only your final code below.
+        This website does not execute submitted code.
+    </div>
+
+
+    <form
+        method="post"
+        action="{{ url_for('submit') }}"
+        id="submission-form"
+        onsubmit="return confirmSubmit()"
+    >
+
+        <!-- Question ID -->
+        <input
+            type="hidden"
+            name="question_id"
+            value="{{ question.id }}"
+        >
+
+
+        <!--
+            IMPORTANT:
+            Keep the name as elapsed_seconds
+            because Flask should read this value.
+        -->
+        <input
+            type="hidden"
+            name="elapsed_seconds"
+            id="elapsed"
+            value="0"
+        >
+
+
+        <label>Member submitting</label>
+
+        <select name="member" required>
+
+            <option value="{{ session.member1 }}">
+                {{ session.member1 }}
+            </option>
+
+            <option value="{{ session.member2 }}">
+                {{ session.member2 }}
+            </option>
+
+        </select>
+
+
+        <label>Final code</label>
+
+        <textarea
+            class="code"
+            name="code"
+            placeholder="// Paste code from VS Code here"
+            required
+        ></textarea>
+
+
+        <button
+            class="primary large"
+            type="submit"
+            style="margin: 20px 0px"
+        >
+            Submit Code
+        </button>
+
+    </form>
+
+</section>
+
+
+<script>
+
+    // ==========================================
+    // 10 MINUTE COUNTDOWN
+    // ==========================================
+
+    const totalTime = 10 * 60; // 10 minutes
+
+    let remaining = totalTime;
+
+
+    // ==========================================
+    // UPDATE TIMER
+    // ==========================================
+
+    function updateTimer() {
+
+        // Calculate minutes and seconds
+        const minutes = Math.floor(remaining / 60);
+
+        const seconds = remaining % 60;
+
+
+        // Display countdown
+        document.getElementById("timer").textContent =
+            String(minutes).padStart(2, "0") +
+            ":" +
+            String(seconds).padStart(2, "0");
+
+
+        // Calculate elapsed time
+        const elapsed = totalTime - remaining;
+
+
+        // Send elapsed time to Flask
+        document.getElementById("elapsed").value = elapsed;
+
+
+        // If time is finished
+        if (remaining <= 0) {
+
+            clearInterval(timerInterval);
+
+            document.getElementById("timer").textContent = "00:00";
+
+            alert("Time is up!");
+
+            return;
+        }
+
+
+        // Decrease by 1 second
+        remaining--;
+
+    }
+
+
+    // ==========================================
+    // START TIMER IMMEDIATELY
+    // ==========================================
+
+    updateTimer();
+
+
+    // ==========================================
+    // RUN EVERY 1 SECOND
+    // ==========================================
+
+    const timerInterval = setInterval(updateTimer, 1000);
+
+
+    // ==========================================
+    // CONFIRM SUBMISSION
+    // ==========================================
+
+    function confirmSubmit() {
+
+        return confirm(
+            "Are you sure you want to submit your final code?"
+        );
+
+    }
+
+</script>
+
+
+{% endblock %}

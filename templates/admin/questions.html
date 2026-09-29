@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Questions{% endblock %}
+{% block content %}
+<div class="hero">
+<div>
+<span class="eyebrow">Admin</span>
+<h1>Questions</h1>
+</div>
+<a class="button secondary" href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+</div>
+
+<section class="card">
+<form method="post">
+
+<div class="grid two">
+<div>
+<label>Round</label>
+<select name="round_no">
+<option value="1">1</option>
+<option value="2">2</option>
+</select>
+</div>
+
+<div>
+<label>Title</label>
+<input name="title" required>
+</div>
+</div>
+
+<label>Description</label>
+<textarea name="description" rows="6" required></textarea>
+
+<button class="primary">Add Question</button>
+</form>
+</section>
+
+<section class="card table">
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Round</th>
+<th>Title</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+{% for q in questions %}
+<tr>
+<td>{{ q.id }}</td>
+<td>{{ q.round_no }}</td>
+<td>{{ q.title }}</td>
+<td>{{ q.description }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</section>
+{% endblock %}

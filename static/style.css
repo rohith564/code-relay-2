@@ -1,0 +1,289 @@
+:root {
+    --bg: #07111f;
+    --panel: #0e1b2d;
+    --line: #263a55;
+    --text: #edf4ff;
+    --muted: #9fb0c6;
+    --blue: #3b82f6;
+    --red: #ef4444;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background:
+        radial-gradient(
+            circle at top,
+            #102640,
+            #07111f 55%
+        );
+    color: var(--text);
+    font-family: Segoe UI, Arial, sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+header {
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    border-bottom: 1px solid var(--line);
+    background: #07111fee;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.brand {
+    font-weight: 800;
+}
+
+nav {
+    display: flex;
+    gap: 18px;
+    color: var(--muted);
+}
+
+main {
+    width: min(1150px, 92%);
+    margin: 40px auto 80px;
+}
+
+.card,
+.stat {
+    background: #0e1b2df2;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 28px;
+    margin-bottom: 24px;
+}
+
+.center {
+    max-width: 500px;
+    margin: 80px auto;
+    text-align: center;
+}
+
+.logo {
+    font-size: 48px;
+}
+
+h1 {
+    font-size: 44px;
+    margin: 8px 0;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+p {
+    color: var(--muted);
+}
+
+.eyebrow {
+    color: #7db1ff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+label {
+    display: block;
+    color: var(--muted);
+    margin: 15px 0 7px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #081525;
+    color: var(--text);
+    font: inherit;
+}
+
+button,
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.primary {
+    background: var(--blue);
+    color: white;
+}
+
+.secondary {
+    background: #263951;
+    color: white;
+}
+
+.danger {
+    background: var(--red);
+    color: white;
+}
+
+.large {
+    padding: 15px 24px;
+}
+
+.hero,
+.coding-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 28px;
+}
+
+.status,
+.timer {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    padding: 18px 25px;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.status strong,
+.timer strong {
+    display: block;
+    font-size: 25px;
+    margin-top: 5px;
+}
+
+.timer strong {
+    font-size: 40px;
+    font-variant-numeric: tabular-nums;
+}
+
+.grid {
+    display: grid;
+    gap: 20px;
+}
+
+.two {
+    grid-template-columns: 1fr 1fr;
+}
+
+.three {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.stat {
+    padding: 22px;
+}
+
+.stat strong {
+    display: block;
+    font-size: 34px;
+    margin-top: 6px;
+}
+
+.big {
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.notice,
+.flash {
+    padding: 14px;
+    border-radius: 10px;
+    background: #10253e;
+    border: 1px solid var(--line);
+    margin-bottom: 18px;
+}
+
+.flash.error {
+    background: #2a1115;
+    border-color: #7f1d1d;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.code {
+    min-height: 430px;
+    font-family: Consolas, monospace;
+}
+
+.table {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 13px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+    white-space: nowrap;
+}
+
+th {
+    color: var(--muted);
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.rules li {
+    margin: 12px 0;
+}
+
+@media (max-width: 760px) {
+
+    header {
+        padding: 0 3%;
+    }
+
+    nav {
+        gap: 8px;
+        font-size: 12px;
+    }
+
+    .two,
+    .three {
+        grid-template-columns: 1fr;
+    }
+
+    .hero,
+    .coding-head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .status,
+    .timer {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 34px;
+    }
+}

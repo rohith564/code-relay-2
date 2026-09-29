@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Rules{% endblock %}
+{% block content %}
+<section class="card">
+<span class="eyebrow">Event Rules</span>
+<h1>Code Relay</h1>
+<ol class="rules">
+<li>Each team consists of 2 members.</li>
+<li>Round 1 has 2 minutes of discussion followed by 5 minutes for each member to code.</li>
+<li>Round 2 has 10 minutes of discussion followed by 10 minutes for each member to code.</li>
+<li>Members may communicate only during the discussion period.</li>
+<li>Member 2 must continue from the code left by Member 1.</li>
+<li>Internet, mobile phones, AI tools and external assistance are not allowed.</li>
+<li>Teams are evaluated according to correctness, test cases and timely completion.</li>
+<li>Malpractice may result in disqualification.</li>
+</ol>
+<a class="button primary" href="{{ url_for('participant') }}">Continue</a>
+</section>
+{% endblock %}
